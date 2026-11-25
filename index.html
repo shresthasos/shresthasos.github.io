@@ -1,671 +1,1004 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sostika Shrestha — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --rose:#c4788a;
-    --mauve:#9b6a7d;
-    --deep:#2d1a22;
-    --panel:#3a1f2b;
-    --card:#4a2535;
-    --accent:#e8b4c0;
-    --text:#f0e6ea;
-    --muted:#b89aa3;
-    --border:#7a4a5a;
-  }
-  html{scroll-behavior:smooth}
-  body{background:var(--deep);color:var(--text);font-family:'Cormorant Garamond',serif;min-height:100vh;overflow-x:hidden}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sostika Shrestha </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+   
+    }
 
-  /* ── NAV ── */
-  nav{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    padding:1.2rem 3rem;
-    display:flex;align-items:center;justify-content:space-between;
-    background:rgba(45,26,34,0.85);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(196,120,138,0.15);
-  }
-  .nav-logo{
-    font-family:'Instrument Serif',serif;
-    font-size:1.2rem;letter-spacing:0.08em;
-    color:var(--accent);font-style:italic;
-    text-decoration:none;
-  }
-  .nav-links{display:flex;gap:2.5rem;list-style:none}
-  .nav-links a{
-    text-decoration:none;
-    font-family:'DM Mono',monospace;
-    font-size:0.72rem;letter-spacing:0.12em;
-    color:var(--muted);text-transform:uppercase;
-    transition:color 0.3s;
-  }
-  .nav-links a:hover{color:var(--accent)}
+    :root {
+      --bg: #ffffff;
+      --sky-soft: #f0f7ff;
+      --sky-tint: #e3f0fc;
+   
+      --text: #111111;
+      --muted: #4a5568;
+      --subtle: #64748b;
 
-  /* hamburger (mobile) */
-  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-  .hamburger span{display:block;width:24px;height:1.5px;background:var(--muted);transition:all 0.3s}
-  .mobile-menu{
-    display:none;position:fixed;top:60px;left:0;right:0;z-index:99;
-    background:rgba(45,26,34,0.97);backdrop-filter:blur(16px);
-    padding:2rem;flex-direction:column;gap:1.5rem;
-    border-bottom:1px solid rgba(196,120,138,0.15);
-  }
-  .mobile-menu.open{display:flex}
-  .mobile-menu a{
-    text-decoration:none;font-family:'DM Mono',monospace;
-    font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;
-    color:var(--muted);transition:color 0.3s;
-  }
-  .mobile-menu a:hover{color:var(--accent)}
+    }
 
-  /* ── SHARED ── */
-  section{padding:6rem 3rem 5rem}
-  .section-label{
-    font-family:'DM Mono',monospace;font-size:0.72rem;
-    letter-spacing:0.2em;color:var(--rose);text-transform:uppercase;
-    margin-bottom:1rem;display:flex;align-items:center;gap:0.8rem;
-  }
-  .section-label::before,.section-label::after{
-    content:'';display:block;width:40px;height:1px;
-    background:rgba(196,120,138,0.4);
-  }
-  .section-label.left-only::after{display:none}
-  .section-title{
-    font-family:'Instrument Serif',serif;
-    font-size:clamp(2rem,4vw,3rem);color:var(--text);
-    margin-bottom:1.5rem;
-  }
-  .btn-primary{
-    display:inline-block;padding:0.75rem 2rem;
-    background:var(--rose);color:var(--deep);
-    font-family:'DM Mono',monospace;font-size:0.72rem;
-    letter-spacing:0.12em;text-transform:uppercase;
-    border:none;border-radius:40px;cursor:pointer;
-    text-decoration:none;transition:background 0.3s,transform 0.2s;
-  }
-  .btn-primary:hover{background:var(--accent);transform:translateY(-2px)}
-  .btn-outline{
-    display:inline-block;padding:0.75rem 2rem;
-    background:transparent;color:var(--muted);
-    font-family:'DM Mono',monospace;font-size:0.72rem;
-    letter-spacing:0.12em;text-transform:uppercase;
-    border:1px solid var(--border);border-radius:40px;
-    cursor:pointer;text-decoration:none;transition:all 0.3s;
-  }
-  .btn-outline:hover{border-color:var(--rose);color:var(--rose)}
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* ── HERO ── */
-  #home{
-    min-height:100vh;
-    display:flex;align-items:center;justify-content:space-between;
-    gap:3rem;position:relative;overflow:hidden;
-  }
-  .hero-bg-blob{
-    position:absolute;border-radius:50%;
-    filter:blur(80px);opacity:0.18;pointer-events:none;
-  }
-  .blob1{width:520px;height:520px;background:radial-gradient(circle,#c4788a,transparent);top:-100px;left:-100px}
-  .blob2{width:400px;height:400px;background:radial-gradient(circle,#9b6a7d,transparent);bottom:-80px;right:100px}
-  .hero-text{max-width:520px;animation:fadeUp 0.9s ease both}
-  .greeting{
-    font-family:'DM Mono',monospace;font-size:0.75rem;
-    letter-spacing:0.2em;color:var(--rose);text-transform:uppercase;
-    margin-bottom:1.2rem;display:flex;align-items:center;gap:0.7rem;
-  }
-  .greeting::before{content:'';display:block;width:32px;height:1px;background:var(--rose)}
-  .hero-name{
-    font-family:'Instrument Serif',serif;
-    font-size:clamp(2.8rem,5vw,4.5rem);
-    line-height:1.05;color:var(--text);margin-bottom:0.8rem;
-  }
-  .hero-name em{color:var(--accent);font-style:italic}
-  .hero-tagline{font-size:1.05rem;color:var(--muted);font-style:italic;margin-bottom:0.6rem;line-height:1.7}
-  .hero-sub{
-    font-family:'DM Mono',monospace;font-size:0.7rem;
-    color:var(--border);letter-spacing:0.1em;margin-bottom:2.5rem;
-  }
-  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
+      font-size: 15.5px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* image frame */
-  .hero-image-wrap{position:relative;flex-shrink:0;animation:fadeUp 1.1s ease 0.2s both}
-  .frame-outer{
-    width:300px;height:360px;border-radius:28px;
-    border:1px solid rgba(196,120,138,0.2);
-    position:absolute;top:-12px;left:-12px;pointer-events:none;
-  }
-  .hero-image-frame{
-    width:280px;height:340px;border-radius:24px;
-    background:var(--panel);border:2px solid rgba(196,120,138,0.35);
-    position:relative;overflow:hidden;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .hero-image-frame img{width:100%;height:100%;object-fit:cover}
-  .hero-image-frame::before{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(135deg,rgba(196,120,138,0.12),transparent 60%);
-    z-index:1;pointer-events:none;
-  }
-  .avatar-placeholder{
-    font-family:'Instrument Serif',serif;font-size:6rem;
-    color:var(--rose);opacity:0.5;font-style:italic;
-  }
-  .frame-dots{
-    position:absolute;bottom:-20px;right:-20px;
-    width:80px;height:80px;
-    background-image:radial-gradient(circle,var(--border) 1.5px,transparent 1.5px);
-    background-size:10px 10px;opacity:0.4;
-  }
-  .social-strip{
-    display:flex;gap:1.2rem;margin-top:0.5rem;
-  }
-  .social-strip a{
-    font-family:'DM Mono',monospace;font-size:0.65rem;
-    letter-spacing:0.1em;text-transform:uppercase;
-    color:var(--border);text-decoration:none;transition:color 0.3s;
-  }
-  .social-strip a:hover{color:var(--rose)}
+    /* ── NAVIGATION ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(240, 247, 255, 0.92);
+      backdrop-filter: blur(10px);
+   
+    }
 
-  /* ── ABOUT ── */
-  #about{background:var(--panel);text-align:center}
-  .about-inner{max-width:1000px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:2.5rem}
-  .about-desc{max-width:660px;font-size:1.05rem;color:var(--muted);line-height:1.9;font-style:italic}
-  .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;width:100%}
-  .about-card{
-    background:var(--card);border:1px solid rgba(196,120,138,0.2);
-    border-radius:16px;padding:2rem 1.5rem;text-align:left;
-    transition:border-color 0.3s,transform 0.3s;
-  }
-  .about-card:hover{border-color:var(--rose);transform:translateY(-4px)}
-  .about-card-icon{
-    font-family:'DM Mono',monospace;font-size:0.65rem;
-    color:var(--rose);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.8rem;
-  }
-  .about-card h3{font-family:'Instrument Serif',serif;font-size:1.3rem;color:var(--accent);margin-bottom:0.6rem;font-style:italic}
-  .about-card p{font-size:0.9rem;color:var(--muted);line-height:1.7}
-  .skills-row{display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin-top:0.5rem}
-  .skill-chip{
-    font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.08em;
-    padding:0.3rem 0.8rem;border-radius:20px;
-    background:rgba(196,120,138,0.1);color:var(--rose);
-    border:1px solid rgba(196,120,138,0.25);
-  }
+    .nav-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 1.05rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-  /* ── PROJECTS ── */
-  #projects{background:var(--deep)}
-  .projects-inner{max-width:1080px;margin:0 auto}
-  .projects-header{margin-bottom:3rem}
-  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
-  .project-card{
-    background:var(--panel);border:1px solid rgba(196,120,138,0.2);
-    border-radius:20px;overflow:hidden;
-    transition:transform 0.3s,border-color 0.3s;cursor:pointer;
-  }
-  .project-card:hover{transform:translateY(-6px);border-color:var(--rose)}
-  .project-card-top{
-    height:180px;background:var(--card);
-    position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;
-  }
-  .project-card-top::after{
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(to bottom,transparent 60%,var(--panel));
-  }
-  .project-tag-wrap{position:absolute;top:1rem;left:1rem;display:flex;gap:0.5rem;z-index:2}
-  .project-tag{
-    font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;
-    padding:0.25rem 0.7rem;border-radius:20px;
-    border:1px solid rgba(196,120,138,0.4);color:var(--muted);
-    background:rgba(45,26,34,0.6);
-  }
-  .project-visual{font-family:'Instrument Serif',serif;font-size:4rem;color:var(--rose);opacity:0.3;font-style:italic}
-  .project-body{padding:1.5rem}
-  .project-body h3{font-family:'Instrument Serif',serif;font-size:1.4rem;color:var(--text);margin-bottom:0.5rem;font-style:italic}
-  .project-body p{font-size:0.85rem;color:var(--muted);line-height:1.7}
-  .project-footer{padding:0 1.5rem 1.5rem;display:flex;gap:0.6rem;flex-wrap:wrap}
-  .chip{
-    font-family:'DM Mono',monospace;font-size:0.62rem;
-    padding:0.2rem 0.6rem;border-radius:12px;
-    background:rgba(196,120,138,0.1);color:var(--rose);
-    border:1px solid rgba(196,120,138,0.25);
-  }
-  .project-links{padding:0 1.5rem 1.5rem;display:flex;gap:1rem}
-  .project-link{
-    font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
-    color:var(--rose);text-decoration:none;
-    border-bottom:1px solid rgba(196,120,138,0.3);padding-bottom:1px;transition:border-color 0.3s;
-  }
-  .project-link:hover{border-color:var(--rose)}
+    .nav-logo {
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      text-decoration: none;
+    }
 
-  /* ── WRITINGS ── */
-  #writings{background:var(--panel)}
-  .writings-wrap{max-width:1080px;margin:0 auto}
-  .writings-inner{
-    display:grid;grid-template-columns:280px 1fr;gap:5rem;align-items:start;
-    margin-top:3rem;
-  }
-  .writings-left{position:sticky;top:100px}
-  .writings-left p{font-size:0.9rem;color:var(--muted);line-height:1.8;margin-bottom:2rem}
-  .writings-right{display:flex;flex-direction:column}
-  .writing-item{
-    padding:2rem 0;border-bottom:1px solid rgba(196,120,138,0.15);
-    display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:start;
-    cursor:pointer;transition:opacity 0.3s;text-decoration:none;
-  }
-  .writing-item:first-child{padding-top:0}
-  .writing-item:last-child{border-bottom:none}
-  .writing-item:hover{opacity:0.8}
-  .writing-meta{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--muted);margin-bottom:0.5rem}
-  .writing-title{font-family:'Instrument Serif',serif;font-size:1.4rem;color:var(--text);line-height:1.2;margin-bottom:0.5rem;font-style:italic}
-  .writing-excerpt{font-size:0.82rem;color:var(--muted);line-height:1.7;margin-bottom:0.8rem}
-  .writing-read{
-    font-family:'DM Mono',monospace;font-size:0.65rem;
-    letter-spacing:0.1em;text-transform:uppercase;color:var(--rose);
-    border-bottom:1px solid rgba(196,120,138,0.3);padding-bottom:1px;
-    transition:border-color 0.3s;text-decoration:none;display:inline;
-  }
-  .writing-read:hover{border-color:var(--rose)}
-  .writing-thumb{
-    width:100px;height:80px;border-radius:10px;
-    background:var(--card);border:1px solid rgba(196,120,138,0.2);
-    overflow:hidden;display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-  }
-  .writing-thumb img{width:100%;height:100%;object-fit:cover}
-  .thumb-inner{font-size:2rem;opacity:0.45}
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
 
-  /* ── CONTACT ── */
-  #contact{background:var(--deep);text-align:center}
-  .contact-inner{max-width:600px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:2rem}
-  .contact-inner p{font-size:1rem;color:var(--muted);line-height:1.8;font-style:italic}
-  .contact-links{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
-  .contact-email{
-    font-family:'DM Mono',monospace;font-size:0.75rem;letter-spacing:0.15em;
-    color:var(--accent);text-decoration:none;
-    border-bottom:1px solid rgba(232,180,192,0.3);padding-bottom:2px;
-    transition:border-color 0.3s;
-  }
-  .contact-email:hover{border-color:var(--accent)}
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
 
-  /* ── FOOTER ── */
-  footer{
-    background:rgba(30,15,20,0.8);
-    border-top:1px solid rgba(196,120,138,0.15);
-    padding:2.5rem 3rem;
-    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
-  }
-  .footer-name{font-family:'Instrument Serif',serif;font-size:1rem;font-style:italic;color:var(--muted)}
-  .footer-links{display:flex;gap:2rem;list-style:none}
-  .footer-links a{
-    font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
-    color:var(--muted);text-decoration:none;transition:color 0.3s;
-  }
-  .footer-links a:hover{color:var(--accent)}
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
 
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+   
+      cursor: pointer;
+      padding: 4px;
+    }
 
-  /* ── RESPONSIVE ── */
-  @media(max-width:900px){
-    .writings-inner{grid-template-columns:1fr;gap:2.5rem}
-    .writings-left{position:static}
-  }
-  @media(max-width:700px){
-    nav{padding:1rem 1.5rem}
-    .nav-links{display:none}
-    .hamburger{display:flex}
-    section{padding:5rem 1.5rem 3rem}
-    #home{flex-direction:column-reverse;align-items:center;text-align:center;padding-top:7rem}
-    .greeting{justify-content:center}
-    .hero-btns{justify-content:center}
-    .social-strip{justify-content:center}
-    footer{flex-direction:column;gap:1.5rem;text-align:center}
-    .footer-links{gap:1.2rem;flex-wrap:wrap;justify-content:center}
-  }
-</style>
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 56px;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      background: var(--sky-soft);
+    
+      padding: 1.4rem 2rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ── SHARED SECTION LAYOUT ── */
+    section {
+      padding: 5rem 2rem;
+    
+    }
+
+
+
+    .section-inner {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--subtle);
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1.3rem;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+  
+      transition: background 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: #2b2b2b;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 1.3rem;
+      background: var(--bg);
+    
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+  
+   
+    }
+
+    .btn-outline:hover {
+   
+      background: var(--sky-soft);
+    }
+
+    /* ── HERO / INTRODUCTION ── */
+    #home {
+  
+      padding-top: 6.75rem;
+      padding-bottom: 4.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.75fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-location {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.3rem, 4.2vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-role {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .hero-contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.1rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .social-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.8rem;
+      background: var(--bg);
+    
+      
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.83rem;
+      font-weight: 500;
+   
+    }
+
+ 
+
+    .social-icons svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .hero-photo-wrap {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-photo-frame {
+      width: 100%;
+      max-width: 290px;
+      aspect-ratio: 4 / 5;
+    
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── ABOUT & COMPACT KEY SKILLS ── */
+    #about {
+      background: var(--bg);
+    }
+
+    .summary-text {
+      font-size: 1rem;
+      line-height: 1.78;
+      color: var(--text);
+      margin-bottom: 1.75rem;
+    }
+
+    .compact-skills-bar {
+      
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .compact-skills-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .compact-skills-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-right: 0.35rem;
+    }
+
+    .skill-pill {
+      font-size: 0.82rem;
+      font-weight: 500;
+      padding: 0.22rem 0.65rem;
+      
+    }
+
+    /* ── PROJECTS (ONE PROJECT PER ROW) ── */
+    #projects {
+      background: var(--sky-soft);
+    }
+
+    .projects-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .project-row {
+      background: var(--bg);
+     
+      padding: 1.5rem 1.65rem;
+  
+    }
+
+
+    .project-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .project-row h3 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .project-context {
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-left: 0.35rem;
+    }
+
+    .project-link {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .project-link:hover {
+      color: var(--muted);
+    }
+
+    .project-bullets {
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .project-bullets li {
+      margin-bottom: 0.3rem;
+    }
+
+    .project-bullets li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── AUDIO DEMO PANEL ── */
+    .audio-panel {
+      margin-top: 1rem;
+      padding: 0.95rem 1rem;
+    
+      
+     
+    }
+
+    .audio-panel-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .audio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.7rem;
+    }
+
+    .audio-box {
+      background: var(--bg);
+   
+      padding: 0.55rem 0.7rem;
+    }
+
+    .audio-box label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .audio-box audio {
+      width: 100%;
+      height: 30px;
+    }
+
+    /* ── EDUCATION, CERTIFICATIONS & AWARDS ── */
+    #credentials {
+      background: var(--bg);
+    }
+
+    .credentials-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2.75rem;
+    }
+
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .row-card {
+      background: var(--sky-soft);
+    
+      padding: 1.1rem 1.35rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .row-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+
+    .row-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .row-right {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .verify-btn {
+      display: inline-block;
+      padding: 0.3rem 0.75rem;
+      background: var(--bg);
+     
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .verify-btn:hover {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--sky-soft);
+
+      padding: 2rem;
+    }
+
+    .footer-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.4rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 780px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-photo-wrap {
+        justify-content: flex-start;
+        order: -1;
+      }
+
+      .hero-photo-frame {
+        max-width: 220px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      section {
+        padding: 4rem 1.25rem;
+      }
+
+      .row-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
-<nav>
-  <a href="#home" class="nav-logo">S. Shrestha</a>
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#writings">Writings</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#home" onclick="closeMobile()">Home</a>
-  <a href="#about" onclick="closeMobile()">About</a>
-  <a href="#projects" onclick="closeMobile()">Projects</a>
-  <a href="#writings" onclick="closeMobile()">Writings</a>
-  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">SOSTIKA SHRESTHA</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications &amp; Awards</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMobile()">Home</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#projects" onclick="closeMobile()">Projects</a>
+    <a href="#education" onclick="closeMobile()">Education</a>
+    <a href="#certifications" onclick="closeMobile()">Certifications &amp; Awards</a>
+  </div>
+
+  <!-- HERO / INTRODUCTION -->
+  <section id="home">
+    <div class="section-inner">
+      <div class="hero-grid">
+        <div>
+      
+          <h1 class="hero-name">SOSTIKA SHRESTHA</h1>
+          <p class="hero-role">
+            Final-year Electronics, Communication and Information Engineering Undergraduate at IOE, Pulchowk Campus
+          </p>
+        
+         
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/sostikashrestha/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/shresthasos" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12C2 16.42 4.87 20.17 8.84 21.5C9.34 21.58 9.5 21.27 9.5 21C9.5 20.77 9.5 20.14 9.5 19.31C6.73 19.91 6.14 17.97 6.14 17.97C5.68 16.81 5.03 16.5 5.03 16.5C4.12 15.88 5.1 15.9 5.1 15.9C6.1 15.97 6.63 16.93 6.63 16.93C7.5 18.45 8.97 18 9.54 17.76C9.63 17.11 9.89 16.67 10.17 16.42C7.95 16.17 5.62 15.31 5.62 11.5C5.62 10.39 6 9.5 6.65 8.79C6.55 8.54 6.2 7.5 6.75 6.15C6.75 6.15 7.59 5.88 9.5 7.17C10.29 6.95 11.15 6.84 12 6.84C12.85 6.84 13.71 6.95 14.5 7.17C16.41 5.88 17.25 6.15 17.25 6.15C17.8 7.5 17.45 8.54 17.35 8.79C18 9.5 18.38 10.39 18.38 11.5C18.38 15.32 16.04 16.16 13.81 16.41C14.17 16.72 14.5 17.33 14.5 18.26C14.5 19.6 14.5 20.68 14.5 21C14.5 21.27 14.66 21.59 15.17 21.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+              GitHub
+            </a>
+            <a href="https://medium.com/@shresthasostika" target="_blank" rel="noopener noreferrer" aria-label="Medium">
+              <svg viewBox="0 0 24 24"><path d="M4.285 7.269a.733.733 0 0 0-.24-.619l-1.77-2.133v-.32h5.498l4.25 9.32 3.736-9.32H21v.319l-1.515 1.451a.45.45 0 0 0-.168.425v10.666a.448.448 0 0 0 .168.425l1.479 1.451v.319h-7.436v-.319l1.529-1.487c.152-.15.152-.195.152-.424V8.401l-4.255 10.817h-.575L5.43 8.401v7.249c-.041.305.06.612.275.833l1.99 2.414v.319H2.05v-.319l1.99-2.414a.971.971 0 0 0 .245-.833V7.269z"/></svg>
+              Medium
+            </a>
+            <a href="mailto:sostika002@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4M20 8L12 13L4 8V6L12 11L20 6V8Z"/></svg>
+              Email
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-frame">
+            <img src="sostika.jpeg" alt="Sostika Shrestha" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUMMARY & COMPACT KEY SKILLS -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        
+        <h2 class="section-title">About Me</h2>
+      </div>
+
+      <p class="summary-text reveal">
+        A final year in undergraduate but always curious about new things and love to explore the tech and its world, i have explored the various deep learning techniques and have completed two major milstone projects in AI the first one is Autonomous navigations of robot using Reinforcement learning and second one is in Audio process to extract the target speaker voiceprint. i have collaborated with my friends to build on various different hackthon project and learned the various framework right now i am currently exploring and learning the architecture of LLM and trying to learn how the prompt injection occurs in LLM and tyring to make a robust defensive system .
+      </p>
+
+      <div class="compact-skills-bar reveal">
+        <div class="compact-skills-row">
+          <span class="compact-skills-label">Core Stack:</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">C / C++</span>
+          <span class="skill-pill">PyTorch &amp; RL</span>
+          <span class="skill-pill">RAG &amp; LLMs</span>
+          <span class="skill-pill">Django &amp; FastAPI</span>
+          <span class="skill-pill">Next.js</span>
+          <span class="skill-pill">ROS &amp; PyBullet</span>
+          <span class="skill-pill">MATLAB</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS (ONE PROJECT PER ROW) -->
+  <section id="projects">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">Work</div>
+        <h2 class="section-title">Projects</h2>
+      </div>
+
+      <div class="projects-stack">
+
+        <!-- Project 1 -->
+        <article class="project-row reveal">
+          <div class="project-row-top">
+            <div>
+              <h3>Speaker-Aware Target Speech Extraction <span class="project-context">| Samsung Innovation Campus (Capstone)</span></h3>
+            </div>
+            <a href="#" class="project-link">[GitHub]</a>
+          </div>
+          <ul class="project-bullets">
+            <li>Developed a BSRNN-based model with BiLSTM layers, conditioned on speaker embeddings, to extract a target speaker’s speech from noisy multi-speaker mixtures.</li>
+            <li>Trained and evaluated the model on LibriSpeech and DEMAND datasets.</li>
+          </ul>
+
+          <div class="audio-panel">
+  <div class="audio-panel-title">Audio Separation Samples</div>
+  <div class="audio-rows" style="display:flex;flex-direction:column;gap:0.7rem">
+
+    <!-- Row 1: Mixture -->
+    <div style="display:grid;grid-template-columns:1fr;gap:0.7rem">
+      <div class="audio-box">
+        <label>Input Mixture </label>
+        <audio controls preload="metadata" src="mixture.wav"></audio>
+      </div>
+    </div>
+
+    <!-- Row 2: Speaker 1 Enrollment + Output 1 -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.7rem">
+      <div class="audio-box">
+        <label>Speaker 1 Enrollment</label>
+        <audio controls preload="metadata" src="enrollment1.wav"></audio>
+      </div>
+      <div class="audio-box">
+        <label>Extracted Speaker 1</label>
+        <audio controls preload="metadata" src="output1.wav"></audio>
+      </div>
+    </div>
+
+    <!-- Row 3: Speaker 2 Enrollment + Output 2 -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.7rem">
+      <div class="audio-box">
+        <label>Speaker 2 Enrollment</label>
+        <audio controls preload="metadata" src="enrollment2.wav"></audio>
+      </div>
+      <div class="audio-box">
+        <label>Extracted Speaker 2</label>
+        <audio controls preload="metadata" src="output2.wav"></audio>
+      </div>
+    </div>
+
+  </div>
 </div>
+        </article>
 
-<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
-<section id="home">
-  <div class="hero-bg-blob blob1"></div>
-  <div class="hero-bg-blob blob2"></div>
-
-  <div class="hero-text">
-    <div class="greeting">Hello there</div>
-    <h1 class="hero-name">Hi, I'm<br><em>Sostika Shrestha</em></h1>
-    <p class="hero-tagline">ECE undergraduate — curious mind at the crossroads of hardware and intelligence.</p>
-    <p class="hero-sub">// deep learning · signal processing · digital design</p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn-primary">Discover My Work</a>
-      <a href="#writings" class="btn-outline">Read My Writing</a>
-    </div>
-    <div class="social-strip" style="margin-top:2rem">
-      <a href="https://github.com/" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
-      <a href="mailto:sostika@email.com">Email</a>
-      <a href="cv.pdf" target="_blank">Resume ↗</a>
-    </div>
-  </div>
-
-  <!-- Replace the avatar-placeholder span with an <img> tag once you have a photo -->
-  <div class="hero-image-wrap">
-    <div class="frame-outer"></div>
-    <div class="hero-image-frame">
-      <img src="sostika.jpeg" alt="Sostika Shrestha" />
-      <!-- <span class="avatar-placeholder">S</span> -->
-    </div>
-    <div class="frame-dots"></div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
-<section id="about">
-  <div class="about-inner">
-    <div>
-      <div class="section-label">About me</div>
-      <h2 class="section-title">Tech-savvy &amp; endlessly curious</h2>
-    </div>
-    <p class="about-desc">
-      I'm an Electrical &amp; Computer Engineering undergraduate diving deeper into deep learning,
-      building at the intersection of circuits and cognition. I love turning ideas into tangible
-      things — whether that's a neural network, a digital design, or a finely crafted essay.
-    </p>
-    <div class="about-grid">
-      <div class="about-card">
-        <div class="about-card-icon">01 · Focus</div>
-        <h3>Deep Learning</h3>
-        <p>Exploring neural architectures, model training pipelines, and the mathematics that make machines think.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-card-icon">02 · Background</div>
-        <h3>ECE Foundations</h3>
-        <p>Signals, systems, and digital design — the hardware layer that grounds my software curiosity.</p>
-      </div>
-      <div class="about-card">
-        <div class="about-card-icon">03 · Beyond code</div>
-        <h3>Writing &amp; Ideas</h3>
-        <p>Crafting essays on technology, culture, and the texture of learning something hard from scratch.</p>
-      </div>
-    </div>
-    <div class="skills-row">
-      <span class="skill-chip">Python</span>
-      <span class="skill-chip">PyTorch</span>
-      <span class="skill-chip">TensorFlow</span>
-      <span class="skill-chip">VHDL</span>
-      <span class="skill-chip">MATLAB</span>
-      <span class="skill-chip">C/C++</span>
-      <span class="skill-chip">NumPy</span>
-      <span class="skill-chip">Signal Processing</span>
-      <span class="skill-chip">FPGA</span>
-      <span class="skill-chip">Linux</span>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ PROJECTS ═══════════════════════════════ -->
-<section id="projects">
-  <div class="projects-inner">
-    <div class="projects-header">
-      <div class="section-label left-only">My Projects</div>
-      <h2 class="section-title" style="margin-bottom:0.5rem">Things I've built</h2>
-      <p style="color:var(--muted);font-size:0.9rem;font-style:italic">A selection of work across deep learning, signal processing, and hardware.</p>
-    </div>
-    <div class="projects-grid">
-
-      <div class="project-card">
-        <div class="project-card-top">
-          <div class="project-tag-wrap"><span class="project-tag">Deep Learning</span></div>
-          <span class="project-visual">∂</span>
-        </div>
-        <div class="project-body">
-          <h3>Neural Network from Scratch</h3>
-          <p>Implemented backpropagation, activations, and gradient descent in pure NumPy — no frameworks, just math and first principles.</p>
-        </div>
-        <div class="project-footer">
-          <span class="chip">Python</span><span class="chip">NumPy</span><span class="chip">Math</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">GitHub →</a>
-          <a href="#" class="project-link">Demo →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-top">
-          <div class="project-tag-wrap"><span class="project-tag">Signal Processing</span></div>
-          <span class="project-visual">≋</span>
-        </div>
-        <div class="project-body">
-          <h3>Audio Classifier</h3>
-          <p>Converted audio signals to mel spectrograms and trained a CNN to classify urban sounds with 89% accuracy using custom data augmentation.</p>
-        </div>
-        <div class="project-footer">
-          <span class="chip">PyTorch</span><span class="chip">Librosa</span><span class="chip">CNN</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-top">
-          <div class="project-tag-wrap"><span class="project-tag">Hardware</span></div>
-          <span class="project-visual">⊕</span>
-        </div>
-        <div class="project-body">
-          <h3>FPGA Logic Synthesizer</h3>
-          <p>Designed a digital logic synthesizer on FPGA with VHDL, implementing FIR filters and waveform generators with real-time audio output.</p>
-        </div>
-        <div class="project-footer">
-          <span class="chip">VHDL</span><span class="chip">FPGA</span><span class="chip">DSP</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">GitHub →</a>
-          <a href="#" class="project-link">Report →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-top">
-          <div class="project-tag-wrap"><span class="project-tag">Computer Vision</span></div>
-          <span class="project-visual">◎</span>
-        </div>
-        <div class="project-body">
-          <h3>Object Detection Pipeline</h3>
-          <p>Built a lightweight real-time object detection pipeline using transfer learning on a custom dataset of lab components.</p>
-        </div>
-        <div class="project-footer">
-          <span class="chip">YOLO</span><span class="chip">OpenCV</span><span class="chip">Python</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">GitHub →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-top">
-          <div class="project-tag-wrap"><span class="project-tag">NLP</span></div>
-          <span class="project-visual">λ</span>
-        </div>
-        <div class="project-body">
-          <h3>Sentiment Analysis Engine</h3>
-          <p>Fine-tuned a transformer model for sentiment classification on Nepali-English code-switched text — a low-resource challenge.</p>
-        </div>
-        <div class="project-footer">
-          <span class="chip">Transformers</span><span class="chip">HuggingFace</span><span class="chip">NLP</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">GitHub →</a>
-          <a href="#" class="project-link">Paper →</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-card-top">
-          <div class="project-tag-wrap"><span class="project-tag">Systems</span></div>
-          <span class="project-visual">Σ</span>
-        </div>
-        <div class="project-body">
-          <h3>Microcontroller Weather Station</h3>
-          <p>Designed an embedded weather station with temperature, humidity, and pressure sensors, transmitting data over UART to a dashboard.</p>
-        </div>
-        <div class="project-footer">
-          <span class="chip">C</span><span class="chip">Arduino</span><span class="chip">I2C</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link">GitHub →</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════ WRITINGS ═══════════════════════════════ -->
-<section id="writings">
-  <div class="writings-wrap">
-    <div class="section-label left-only">Writings</div>
-    <div class="writings-inner">
-      <div class="writings-left">
-        <h2 class="section-title" style="font-style:italic;line-height:1.15">Ideas I keep<br>returning to</h2>
-        <p>Essays on learning, technology, and the quiet strangeness of building things you don't yet understand.</p>
-        <a href="#" class="btn-outline">Browse all →</a>
-      </div>
-      <div class="writings-right">
-
-        <a class="writing-item" href="#">
-          <div>
-            <div class="writing-meta">04.03.2025</div>
-            <div class="writing-title">On Learning Hard Things: Notes from ECE</div>
-            <div class="writing-excerpt">A meditation on confusion, persistence, and what it means to truly understand a Fourier transform at 2am.</div>
-            <span class="writing-read">Read essay →</span>
+        <!-- Project 2 -->
+        <article class="project-row reveal">
+          <div class="project-row-top">
+            <div>
+              <h3>Autonomous Navigation Using Reinforcement Learning <span class="project-context">| Minor Academic Project</span></h3>
+            </div>
+            <a href="#" class="project-link">[GitHub]</a>
           </div>
-          <div class="writing-thumb"><span class="thumb-inner">📡</span></div>
-        </a>
+          <ul class="project-bullets">
+            <li>Developed an autonomous robot navigation system in a simulated environment using a URDF robot model, PyBullet, and the PPO algorithm.</li>
+            <li>Designed the environment, rewards, and penalties, and trained the robot using continuous action spaces and ROS middleware to support sim-to-real transfer.</li>
+          </ul>
+        </article>
 
-        <a class="writing-item" href="#">
-          <div>
-            <div class="writing-meta">03.22.2025</div>
-            <div class="writing-title">The Shape of Attention: What Transformers Taught Me</div>
-            <div class="writing-excerpt">How studying attention mechanisms changed the way I pay attention to everything else.</div>
-            <span class="writing-read">Read essay →</span>
+        <!-- Project 3 -->
+        <article class="project-row reveal">
+          <div class="project-row-top">
+            <div>
+              <h3>Self-Defense Learning Platform <span class="project-context">| LOCUS Hack-a-Week (Winner)</span></h3>
+            </div>
+            <a href="#" class="project-link">[GitHub]</a>
           </div>
-          <div class="writing-thumb"><span class="thumb-inner">🧠</span></div>
-        </a>
+          <ul class="project-bullets">
+            <li>Built an interactive self-defense learning platform in a seven-day collaborative hackathon using TensorFlow, Next.js, and MediaPipe keypoint estimation.</li>
+            <li>Developed a RAG-based chatbot for emotional support.</li>
+          </ul>
+        </article>
 
-        <a class="writing-item" href="#">
-          <div>
-            <div class="writing-meta">02.07.2025</div>
-            <div class="writing-title">Kathmandu, Code, and Quiet Ambition</div>
-            <div class="writing-excerpt">Growing up between mountains and modems — on being a tech person in a place the tech world rarely looks toward.</div>
-            <span class="writing-read">Read essay →</span>
+        <!-- Project 4 -->
+        <article class="project-row reveal">
+          <div class="project-row-top">
+            <div>
+              <h3>LabSathi <span class="project-context">| LOCUS Hack-a-Week</span></h3>
+            </div>
+            <a href="#" class="project-link">[GitHub]</a>
           </div>
-          <div class="writing-thumb"><span class="thumb-inner">🏔</span></div>
-        </a>
+          <ul class="project-bullets">
+            <li>Developed a virtual laboratory platform using Next.js and a RAG pipeline to guide students through physics, chemistry, and biology lab sessions.</li>
+          </ul>
+        </article>
 
-        <a class="writing-item" href="#">
-          <div>
-            <div class="writing-meta">01.15.2025</div>
-            <div class="writing-title">Why I Still Love Analog Circuits</div>
-            <div class="writing-excerpt">In a world racing toward abstraction, there's something grounding about a resistor you can hold in your hand.</div>
-            <span class="writing-read">Read essay →</span>
+        <!-- Project 5 -->
+        <article class="project-row reveal">
+          <div class="project-row-top">
+            <div>
+              <h3>TryOn: Cultural Heritage Platform <span class="project-context">| SheQual Hackathon</span></h3>
+            </div>
+            <a href="#" class="project-link">[GitHub]</a>
           </div>
-          <div class="writing-thumb"><span class="thumb-inner">⚡</span></div>
-        </a>
+          <ul class="project-bullets">
+            <li>Developed a real-time virtual dress try-on platform using Next.js and MediaPipe.</li>
+            <li>Applied mathematical techniques to fit cultural dresses onto the user’s body in real time.</li>
+          </ul>
+        </article>
 
-        <a class="writing-item" href="#">
-          <div>
-            <div class="writing-meta">12.30.2024</div>
-            <div class="writing-title">The Beginner's Curse: On Knowing Just Enough to Be Confused</div>
-            <div class="writing-excerpt">A reflection on the strange valley between knowing nothing and knowing something — and why it's actually beautiful.</div>
-            <span class="writing-read">Read essay →</span>
+        <!-- Project 6 -->
+        <article class="project-row reveal">
+          <div class="project-row-top">
+            <div>
+              <h3>QR-Based Offline Payment System <span class="project-context">| KU Hackathon</span></h3>
+            </div>
+            <a href="#" class="project-link">[Project Link]</a>
           </div>
-          <div class="writing-thumb"><span class="thumb-inner">🌱</span></div>
-        </a>
+          <ul class="project-bullets">
+            <li>Developed a full-stack mobile application using Django and Flutter that lets receivers accept payments without the payer being online, reducing dependence on internet connectivity.</li>
+            <li>Contributed to backend development and strengthened teamwork and creative problem-solving.</li>
+          </ul>
+        </article>
+
+        <!-- Project 7 -->
+        <article class="project-row reveal">
+          <div class="project-row-top">
+            <div>
+              <h3>EduPerks <span class="project-context">| MBMC Hackathon</span></h3>
+            </div>
+            <a href="#" class="project-link">[GitHub]</a>
+          </div>
+          <ul class="project-bullets">
+            <li>Developed a student discount platform with email verification using Next.js, Tesseract OCR, and Prisma to help students access discounts on goods and services.</li>
+          </ul>
+        </article>
 
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="section-label">Get in touch</div>
-    <h2 class="section-title">Let's connect</h2>
-    <p>
-      Whether it's a research collaboration, a project idea, or just to talk about
-      deep learning and circuits — I'd love to hear from you.
-    </p>
-    <a href="mailto:sostika@email.com" class="contact-email">sostika@email.com</a>
-    <div class="contact-links">
-      <a href="https://github.com/" target="_blank" class="btn-outline">GitHub</a>
-      <a href="https://linkedin.com/" target="_blank" class="btn-outline">LinkedIn</a>
-      <a href="cv.pdf" target="_blank" class="btn-primary">Download Resume</a>
+  <!-- EDUCATION, CERTIFICATIONS & AWARDS -->
+  <section id="credentials">
+    <div class="section-inner">
+      <div class="credentials-stack">
+
+        <!-- Education -->
+        <div id="education" style="scroll-margin-top: 85px;">
+          <div class="section-header reveal">
+            <div class="section-eyebrow">Academic Background</div>
+            <h2 class="section-title">Education</h2>
+          </div>
+
+          <div class="timeline-list">
+            <div class="row-card reveal">
+              <div>
+                <div class="row-title">B.E. Electronics, Communication and Information Engineering</div>
+                <div class="row-sub">IOE, Pulchowk Campus, Lalitpur, Nepal | Aggregate up to 6th Semester: 76.46%</div>
+              </div>
+              <div class="row-right">2023 – Present</div>
+            </div>
+
+            <div class="row-card reveal">
+              <div>
+                <div class="row-title">Higher Secondary (+2)</div>
+                <div class="row-sub">Greenland International School, Biratnagar, Nepal | GPA: 3.25</div>
+              </div>
+              <div class="row-right">2020 – 2022</div>
+            </div>
+
+            <div class="row-card reveal">
+              <div>
+                <div class="row-title">Secondary Level (SEE)</div>
+                <div class="row-sub">Araniko Memorial English School, Sunbarshi-2, Morang, Nepal | GPA: 3.95</div>
+              </div>
+              <div class="row-right">2008 – 2020</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div id="certifications" style="scroll-margin-top: 85px;">
+          <div class="section-header reveal">
+            <div class="section-eyebrow">Credentials</div>
+            <h2 class="section-title">Certifications</h2>
+          </div>
+
+          <div class="timeline-list">
+            <div class="row-card reveal">
+              <div>
+                <div class="row-title">AWS Certified Solutions Architect – Associate (SAA-C03)</div>
+                <div class="row-sub">Exam Score: 893</div>
+              </div>
+              <div class="row-right">
+                <a href="https://cp.certmetrics.com/amazon/en/public/verify/credential/f4c5b98e1f3144948a04dcba39a015a3" target="_blank" rel="noopener noreferrer" class="verify-btn">[Verify]</a>
+              </div>
+            </div>
+
+            <div class="row-card reveal">
+              <div>
+                <div class="row-title">Understanding the Internet</div>
+                <div class="row-sub">SOI Asia Online Course</div>
+              </div>
+              <div class="row-right">June 2025</div>
+            </div>
+
+            <div class="row-card reveal">
+              <div>
+                <div class="row-title">Operating the Internet</div>
+                <div class="row-sub">SOI Asia Online Course</div>
+              </div>
+              <div class="row-right">June 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Awards -->
+        <div id="awards">
+          <div class="section-header reveal">
+            <div class="section-eyebrow">Honors</div>
+            <h2 class="section-title">Awards</h2>
+          </div>
+
+          <div class="timeline-list">
+            <div class="row-card reveal">
+              <div>
+                <div class="row-title">Best Electronics Project</div>
+                <div class="row-sub">Department of Electronics and Computer Engineering</div>
+              </div>
+            </div>
+
+            <div class="row-card reveal">
+              <div>
+                <div class="row-title">Hack-a-Week Winner</div>
+                <div class="row-sub">LOCUS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
-<footer>
-  <span class="footer-name">Sostika Shrestha &mdash; 2025</span>
-  <ul class="footer-links">
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
-    <li><a href="https://linkedin.com/" target="_blank">LinkedIn</a></li>
-    <li><a href="mailto:sostika@email.com">Email</a></li>
-    <li><a href="cv.pdf" target="_blank">Resume</a></li>
-  </ul>
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+    
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/sostikashrestha/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/shresthasos" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://medium.com/@shresthasostika" target="_blank" rel="noopener noreferrer">Medium</a>
+        <a href="mailto:sostika002@gmail.com">sostika002@gmail.com</a>
+      </div>
+    </div>
+  </footer>
 
-<script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-  function closeMobile(){ mobileMenu.classList.remove('open') }
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+    }
 
-  // Subtle scroll-reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    const sections = document.querySelectorAll('section[id], div[id="education"], div[id="certifications"]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach((sec) => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
     });
-  }, {threshold: 0.1});
-
-  document.querySelectorAll('.about-card, .project-card, .writing-item').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.3s';
-    observer.observe(el);
-  });
-</script>
+  </script>
 
 </body>
 </html>
